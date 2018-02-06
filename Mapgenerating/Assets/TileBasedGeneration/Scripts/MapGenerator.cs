@@ -104,7 +104,7 @@ public class MapGenerator : MonoBehaviour {
 					}
 
 					// Instantiate tile
-					placedTiles [width].Add (Instantiate (acPossibleTiles [Random.Range (0, acPossibleTiles.Count)], new Vector3 ((-10.0f * nWidth), 0.0f, (10.0f * nHeight)), Quaternion.identity));
+					placedTiles [nWidth].Add (Instantiate (acPossibleTiles [Random.Range (0, acPossibleTiles.Count)], new Vector3 ((-10.0f * nWidth), 0.0f, (10.0f * nHeight)), Quaternion.identity));
 				}
 			}
 		}
