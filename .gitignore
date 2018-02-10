@@ -1,3 +1,22 @@
-Mapgenerating/Library/
-Mapgenerating/Temp/
-Mapgenerating/obj/
+# Ignore everything.  We'll whitelist what we want to pull in.
+/*
+/*/
+
+# Git meta files
+#!.gitignore
+#!.gitattributes
+#!README.md
+
+# Whitelisted directories/files
+#!/Mapgenerating/ProjectSettings/
+#!/Mapgenerating/Assets/
+
+# Right directory
+# Git meta files
+!/Mapgenerating/.gitignore
+!/Mapgenerating/.gitattributes
+!/Mapgenerating/README.md
+
+# Whitelisted directories/files
+!/Mapgenerating/ProjectSettings/
+!/Mapgenerating/Assets/
