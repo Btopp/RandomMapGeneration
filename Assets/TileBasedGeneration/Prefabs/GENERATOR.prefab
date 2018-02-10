@@ -51,12 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a815eb0d719d814fb6eee8826939792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 3
-  height: 3
+  rows: 3
+  columns: 3
   allTiles:
-  - {fileID: 114874968034793854, guid: d772f30de5ef24840a9007212705234a, type: 2}
+  - {fileID: 114398630155380694, guid: d772f30de5ef24840a9007212705234a, type: 2}
   - {fileID: 114236470481546114, guid: c29fff9d258efad40b3b107fc62f0404, type: 2}
-  - {fileID: 114267905135544300, guid: cd455c4333b9ebb4d9d96997ed80a609, type: 2}
+  - {fileID: 114219741835712986, guid: cd455c4333b9ebb4d9d96997ed80a609, type: 2}
   - {fileID: 114418398769367286, guid: 91da8ad0534418044bad2b3f1a86355b, type: 2}
   - {fileID: 114668888546600546, guid: 43332def3bba2a1438c1afcfa576e23e, type: 2}
   - {fileID: 114344586817079562, guid: 7b7b1928b55f88c40bb137a52e07759d, type: 2}
@@ -69,4 +69,5 @@ MonoBehaviour:
   - {fileID: 114759986949819592, guid: 9505dab73d72e4143aa49cd3eb52edd1, type: 2}
   - {fileID: 114568605675944734, guid: e42d3d27feb162d49ace101daabf547c, type: 2}
   - {fileID: 114161221751472708, guid: 2964052722fd4864296b870db3aa1731, type: 2}
+  - {fileID: 114398630155380694, guid: d772f30de5ef24840a9007212705234a, type: 2}
   randomExit: 0.5

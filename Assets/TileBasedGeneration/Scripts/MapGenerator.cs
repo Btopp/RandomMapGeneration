@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-	public int width = 3; // min = 3
-	public int height = 3; // min = 3
+	public int rows = 3; // min = 3
+	public int columns = 3; // min = 3
 
 	public List<BaseTile> allTiles;
 	private List<List<BaseTile>> placedTiles;
 	private List<BaseTile> acPossibleTiles;
 
-	public float randomExit = 0.5f; // between 0 and 1 (best 0.5)
-	private Vector2 exitCoords = new Vector2();
-
 	private bool isGenerated = false;
 
+	[Range (0f, 1f)]
+	public float randomExit = 0.5f;
+	private Vector2 exitCoords = new Vector2();
+
 	private void Start () {
-		exitCoords = GenerateExitCoords (width, height, randomExit);
+		exitCoords = GenerateExitPositions (rows, columns, randomExit);
 
 		while (!isGenerated) {
 			placedTiles = new List <List<BaseTile>>();
@@ -27,7 +28,7 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	// Calculates exits
-	public Vector2 GenerateExitCoords (int x, int y, float normalizedRandom) {
+	public Vector2 GenerateExitPositions (int x, int y, float normalizedRandom) {
 		Vector2 coords = new Vector2 ();
 		if (normalizedRandom > 0) {
 			coords = new Vector2 (Mathf.Ceil (Random.Range ((x - (x * normalizedRandom)), (x - 1))), Mathf.Ceil (Random.Range ((y - (y * normalizedRandom)), (y - 2))));
@@ -39,27 +40,28 @@ public class MapGenerator : MonoBehaviour {
 
 	void GenerateMap () {
 
-		for (int nWidth = 0; nWidth <= width; nWidth++) {
+		for (int nWidth = 0; nWidth <= rows; nWidth++) {
 			placedTiles.Add(new List<BaseTile>());
 
-			for (int nHeight = 0; nHeight <= height; nHeight++) {
+			for (int nHeight = 0; nHeight <= columns; nHeight++) {
 
 				// First tile
 				if (nHeight == 0 && nWidth == 0) {
-					placedTiles [nWidth].Add (Instantiate (allTiles [2], new Vector3 ((-10.0f * nWidth), 0.0f, (10.0f * nHeight)), Quaternion.identity));
+					// X tile
+					placedTiles [nWidth].Add (Instantiate (allTiles [0], new Vector3 ((-10.0f * nWidth), 0.0f, (10.0f * nHeight)), Quaternion.identity));
 
 				} else {
 					acPossibleTiles = new List<BaseTile> ();
 
 					// Last tile
-					if (nHeight == height && nWidth == width) {
+					if (nHeight == columns && nWidth == rows) {
 						acPossibleTiles = allTiles.FindAll (o => o.gateBottom == placedTiles [nWidth - 1] [nHeight].gateTop && o.gateLeft == placedTiles [nWidth] [nHeight - 1].gateRight);
 						isGenerated = true;
 
 					// Last tiles in width
-					} else if (nWidth == width) {
+					} else if (nWidth == rows) {
 						if (nHeight == 0) {
-							acPossibleTiles = allTiles.FindAll (o => o.gateBottom == placedTiles [nWidth - 1] [0].gateTop && !o.gateTop && !o.gateLeft);
+							acPossibleTiles = allTiles.FindAll (o => o.gateBottom == placedTiles [nWidth - 1] [0].gateTop && !o.gateTop && !o.gateLeft && !o.isSpecial);
 							if (acPossibleTiles.Count == 0) {
 								acPossibleTiles = allTiles.FindAll (o => o.gateBottom && o.gateRight && !o.gateTop && !o.gateLeft);
 							}
@@ -74,9 +76,9 @@ public class MapGenerator : MonoBehaviour {
 						}
 
 					// Last tiles in height
-					} else if (nHeight == height) {
+					} else if (nHeight == columns) {
 						if (nWidth == 0) {
-							acPossibleTiles = allTiles.FindAll (o => o.gateLeft == placedTiles [nWidth] [nHeight - 1].gateRight && !o.gateRight && !o.gateBottom);
+							acPossibleTiles = allTiles.FindAll (o => o.gateLeft == placedTiles [nWidth] [nHeight - 1].gateRight && !o.gateRight && !o.gateBottom && !o.isSpecial);
 							if (acPossibleTiles.Count == 0) {
 								acPossibleTiles = allTiles.FindAll (o => o.gateTop && o.gateLeft && !o.gateBottom && !o.gateRight);
 							}
