@@ -8,7 +8,7 @@ public class MapGenerator : MonoBehaviour {
 	public int rows = 3, columns = 3;
 
 	[Range (0f, 1f)]
-	public float randomExit = 0.5f;
+	public float lenghtForRandomExit = 0.5f; // 1 for whole lenght
 	private Vector2 exitCoords;
 
 	public List<BaseTile> allTiles;
@@ -16,23 +16,16 @@ public class MapGenerator : MonoBehaviour {
 	private List<List<BaseTile>> placedTiles;
 
 	private void Start () {
-		GenerateExitPositions(rows, columns, randomExit);
+		GenerateExitPositions(rows, columns, lenghtForRandomExit);
 		GenerateMap(rows, columns);
 	}
 
 	// Calculate exit positions
-	public void GenerateExitPositions (int rows, int columns, float normalizedRandom) {
-		rows -= 1;
-		columns -= 1;
-
-		if (normalizedRandom > 0) {
-			exitCoords = new Vector2 (
-				Mathf.Round (Random.Range ((rows - (rows * normalizedRandom)), (rows - 1))),
-				Mathf.Round (Random.Range ((columns - (columns * normalizedRandom)), (columns - 1)))
-			);
-		} else {
-			exitCoords = new Vector2 (rows - 1, columns - 1);
-		}
+	public void GenerateExitPositions (int rows, int columns, float lenght) {
+		exitCoords = new Vector2 (
+			Mathf.Clamp(Mathf.Round (Random.Range (((rows - 1) * (1 - lenght)), (rows - 1))), 1, rows - 2),
+			Mathf.Clamp(Mathf.Round (Random.Range (((columns - 1) * (1 - lenght)), (columns - 1))), 1, columns - 2)
+		);
 	}
 
 	void GenerateMap (int rows, int columns) {
