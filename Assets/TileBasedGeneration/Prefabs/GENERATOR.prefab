@@ -33,8 +33,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868870805970418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 3
   columns: 3
+  randomExit: 0.5
   allTiles:
   - {fileID: 114398630155380694, guid: d772f30de5ef24840a9007212705234a, type: 2}
   - {fileID: 114236470481546114, guid: c29fff9d258efad40b3b107fc62f0404, type: 2}
@@ -70,4 +71,3 @@ MonoBehaviour:
   - {fileID: 114568605675944734, guid: e42d3d27feb162d49ace101daabf547c, type: 2}
   - {fileID: 114161221751472708, guid: 2964052722fd4864296b870db3aa1731, type: 2}
   - {fileID: 114398630155380694, guid: d772f30de5ef24840a9007212705234a, type: 2}
-  randomExit: 0.5

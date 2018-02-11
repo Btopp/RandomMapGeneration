@@ -27,8 +27,8 @@ public class MapGenerator : MonoBehaviour {
 
 		if (normalizedRandom > 0) {
 			exitCoords = new Vector2 (
-				Mathf.Ceil (Random.Range ((rows - (rows * normalizedRandom)), (rows - 1))),
-				Mathf.Ceil (Random.Range ((columns - (columns * normalizedRandom)), (columns - 1)))
+				Mathf.Round (Random.Range ((rows - (rows * normalizedRandom)), (rows - 1))),
+				Mathf.Round (Random.Range ((columns - (columns * normalizedRandom)), (columns - 1)))
 			);
 		} else {
 			exitCoords = new Vector2 (rows - 1, columns - 1);
